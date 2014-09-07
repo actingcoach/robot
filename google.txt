@@ -1,0 +1,22 @@
+*** Settings ***
+Library    Selenium2Library
+
+*** Variables ***
+
+*** Testcases ***
+Search in google
+	open browser to google.com
+	search with keyword iphone 6
+	click search
+	results displayed
+	Close Browser
+
+*** Keywords ****
+open browser to google.com
+	Open Browser    http://www.google.com
+search with keyword iphone 6
+	Input Text    gbqfq    iphone 6
+click search
+	Submit Form
+results displayed
+	Wait Until Page Contains    ผลการค้นหาประมาณ

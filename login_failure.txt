@@ -1,0 +1,72 @@
+*** Settings ***
+library    Selenium2Library
+Suite Setup    Open Browser    ${LOGIN PAGE}
+Test Setup    Go To    ${LOGIN PAGE}
+Test Teardown
+Suite Teardown    Close Browser
+Resource    resources/login.txt
+
+*** Testcases ***
+CASE 1
+	username empty password empty
+	Click login
+	Login fail
+CASE 2
+	username empty password pass
+	Click login
+	Login fail
+CASE 3
+	username empty password fail
+	Click login
+	Login fail
+CASE 4
+	username demo password empty
+	Click login
+	Login fail
+CASE 5
+	username demo password fail
+	Click login
+	Login fail
+CASE 6
+	username fail password empty
+	Click login
+	Login fail
+CASE 7
+	username fail password pass
+	Click login
+	Login fail
+CASE 8
+	username fail password fail
+	Click login
+	Login fail
+
+*** Keywords ***
+username empty password empty
+	Input Text    username_field    ${EMPTY}
+	Input Text    password_field    ${EMPTY}
+username empty password fail
+	Input Text    username_field    ${EMPTY}
+	Input Text    password_field    ${FAIL}
+username empty password pass
+	Input Text    username_field    ${EMPTY}
+	Input Text    password_field    ${PASS}
+username demo password empty
+	Input Text    username_field    ${DEMO}
+	Input Text    password_field    ${EMPTY}
+username demo password fail
+	Input Text    username_field    ${DEMO}
+	Input Text    password_field    ${FAIL}
+username fail password empty
+	Input Text    username_field    ${FAIL}
+	Input Text    password_field    ${EMPTY}
+username fail password pass
+	Input Text    username_field    ${FAIL}
+	Input Text    password_field    ${PASS}
+username fail password fail
+	Input Text    username_field    ${FAIL}
+	Input Text    password_field    ${FAIL}
+
+Login fail
+	Location Should Be    ${LOGIN PAGE}/error.html
+	Title Should Be    Error Page
+	Element Should Contain    tag=h1    Error Page

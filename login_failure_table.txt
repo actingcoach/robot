@@ -1,0 +1,32 @@
+*** Settings ***
+library    Selenium2Library
+Test Template    Invalid login
+Suite Setup    Open Browser    ${LOGIN PAGE}
+Test Setup    Go To    ${LOGIN PAGE}
+Test Teardown
+Suite Teardown    Close Browser
+
+*** Testcases ***				USERNAME 	PASSWORD
+username empty password empty    ${EMPTY}    ${EMPTY}
+username empty password fail    ${EMPTY}    ${FAIL}
+username empty password pass    ${EMPTY}    ${PASS}
+username demo password empty    ${DEMO}    ${EMPTY}
+username demo password fail    ${DEMO}    ${FAIL}
+username fail password empty    ${FAIL}    ${EMPTY}
+username fail password pass    ${FAIL}    ${PASS}
+username fail password fail    ${FAIL}    ${FAIL}
+
+*** Keywords ***
+Invalid login
+	[Arguments]    ${username}    ${password}
+	Input Text    username_field    ${username}
+	Input Text    password_field    ${password}
+	Submit Form
+	Login fail
+
+Click login
+	Submit Form
+Login fail
+	Location Should Be    ${LOGIN PAGE}/error.html
+	Title Should Be    Error Page
+	Element Should Contain    tag=h1    Error Page

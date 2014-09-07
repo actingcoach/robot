@@ -1,0 +1,16 @@
+calabash - Android, Iphone lib
+
+ชื่อ test = กำลังจะทำอะไร ไม่ใช่ทำอย่างไร
+
+12. ทำให้เห็นการทำงานซ้ำๆก่อน แล้วค่อยเปลี่ยนเป็น data driven
+13. โครงสร้างเทสควรจัดเป็นชุดๆ test suite แล้วจัด test case ย่อยๆข้างใน
+14. มี setup teardown
+
+AutoITLibrary to simulate mouse movement in Windows
+
+Pybot -i group1 login_failure.txt
+Pybot -t "test case in test" login_failure.txt 
+
+Data driven test
+
+https://code.google.com/p/robotframework/wiki/HowToWriteGoodTestCases

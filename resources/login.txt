@@ -1,0 +1,13 @@
+*** Settings ***
+Decumentation    Reuse keywords and variable for login page
+*** Variables ***
+${LOGIN PAGE}    http://localhost:7272/html
+${PASS}    mode
+${FAIL}    abc
+${DEMO}    demo
+
+*** Keywords ***
+Open login page
+	Open Browser    ${LOGIN PAGE}
+Click login
+	Submit Form
