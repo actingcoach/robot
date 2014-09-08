@@ -1,5 +1,3 @@
-calabash - Android, Iphone lib
-
 ชื่อ test = กำลังจะทำอะไร ไม่ใช่ทำอย่างไร
 
 12. ทำให้เห็นการทำงานซ้ำๆก่อน แล้วค่อยเปลี่ยนเป็น data driven
@@ -14,3 +12,76 @@ Pybot -t "test case in test" login_failure.txt
 Data driven test
 
 https://code.google.com/p/robotframework/wiki/HowToWriteGoodTestCases
+
+Jenkins
+In Build Environment
+(Virtual build) Start Xvfb before the build, and shut it down after.
+
+
+ROBOT
+
+IMAP (http://github.com/lovelysystems/robotframework-imaplibrary)
+	$pip install robotframework-imaplibrary
+
+	Keyword
+		- Open Mailbox <server> <username> <password>
+		- Wait for Mail <from> <to> <status> <timeout>
+		- Get Email body <mailNumber>
+		- Close Mailbox
+	*** Setting ***
+	Library    ImapLibrary
+
+	*** Testcases ***
+	Get Email
+		Open Mailbox    server=imap.gmail.com    user=user1    password=xxxx
+		${LATEST}=    Wait for Mail    fromEmail=<from>    toEmail=<>to    status=UNSEEN
+		${body}=    Get Email body    ${LATEST}
+		Should Contain    ${body}    I love you
+		Close Mailbox
+Cross Browser
+	Download chrome driver from code.google.com
+	In Robot framework
+		Open Browser    ${LOGIN PAGE} gc
+	set PATH=<directory of chrome driver>;%PATH%
+	or
+	export PATH=.:$PATH;
+
+	Pass variable from command line
+	$pybot --variable BROWSER:chrome 04_param.txt
+Android
+	Gennymotion 
+	Calabash
+
+ATDD vs BDD
+	http://assertselenium.com/2012/11/05/difference-between-tdd-bdd-atdd/
+
+Test Execution
+	กำหนด mode ในกรทดสอบ
+	 	ExitOnFailure
+	 	random:test
+	 	random:suite
+	 	random:all
+
+	 	$pybot --runmode <mode> *.txt
+	 --variable
+
+	 ผลการทำงานประกอบไปด้วย 3 ไฟล์
+	 - output
+	 - log
+	 - report
+	 $pybot --output <folder>
+	 $pybot --log <folder>
+	 $pybot --report <folder>
+
+	 $pybot --outputdir <folder>
+	 $pybot -d <folder>
+
+	 -timestamp
+	 $pybot -T *.txt
+	 $pybot --timestampoutputs *.txt
+
+	 -xml output
+	 $pybot -xunit
+
+Robot Framework user guide
+	in robot framework website

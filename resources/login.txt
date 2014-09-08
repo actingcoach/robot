@@ -8,6 +8,6 @@ ${DEMO}    demo
 
 *** Keywords ***
 Open login page
-	Open Browser    ${LOGIN PAGE}
+	Open Browser    ${LOGIN PAGE}    gc
 Click login
 	Submit Form
